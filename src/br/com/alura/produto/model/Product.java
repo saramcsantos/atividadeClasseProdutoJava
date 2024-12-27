@@ -1,27 +1,32 @@
 package br.com.alura.produto.model;
 
-public class Product {
-    private String nomeDoProduto;
-    private double precoDoProduto;
+public class Product implements Vendavel {
+    private String nome;
+    private double precoProduto;
 
-    public String getNomeDoProduto() {
-        return nomeDoProduto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeDoProduto(String nomeDoProduto) {
-        this.nomeDoProduto = nomeDoProduto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public double getPrecoDoProduto() {
-        return precoDoProduto;
+    public double getPrecoProduto() {
+        return precoProduto;
     }
 
-    public void setPrecoDoProduto(double precoDoProduto) {
-        this.precoDoProduto = precoDoProduto;
+    public void setPrecoProduto(double precoProduto) {
+        this.precoProduto = precoProduto;
     }
 
-    public double aplicaDesconto(double desconto){
-        double calculaDesconto = precoDoProduto - (precoDoProduto * desconto);
-        return calculaDesconto;
+    @Override
+    public double getPrecoTotalCompra(int quantidade) {
+        return precoProduto * quantidade;
+    }
+
+    @Override
+    public double getAplicaDesconto(double percentual, double precoFinal) {
+        return precoProduto -= (precoProduto * percentual / 100.0);
     }
 }
