@@ -1,4 +1,4 @@
-# Atividade: classes Product e Servico
+# Atividade: classes Product, Servico e interface Vendavel
 
 ## Descrição
 Este repositóro é dedicado ao desenvolvimento das classes Product e Servico, atividade do curso de Java: aplicando orientação a objetos. Diferente das outras atividade sobre orientação a objetos, a proposta dessa atividade é iniciar os princípios  de: interface e polimorfismo, da orientação a objetos.
@@ -110,12 +110,64 @@ Para aproximar as estruturas de um programa com as coisas do mundo real, a POO c
 Hoje em dia a maioria dos sistemas são desenvolvidos utilizando o paradigma de orientação a objetos, e a linguagem Java foi a pioneira no uso deste paradigma que revolucionou o reúso do código, a manutenção do código e a escrita do código. 
 
 ## Conteúdo estudado e aprendido no desenvolvimento da atividade
-- **Interface:**
-- **Polimorfismo:**
-    - **Sobreescrita:**
-    - **Sobrecarga:**
-- **Pacotes:**
- 
+- **Interface:** é um conjunto de métodos que podem ser implementados pelas classes. As interfaces não possui construtor porque não há como instanciar um objeto de uma interface. Também é característica das interfaces poderem herdar de outra interface, além de uma classe poder implementar várias interfaces. Isso auxilia muito no contexto de herança múltipla, algo que não é permitido em Java. Vamos ver a sintaxe das interfaces para entender melhor:
+
+```
+public interface Veiculo{
+    void ligar(); // método sem retorno e sem implementação
+    void desligar(){
+        System.out.println("Carro desligado!"); // método sem retorno e com implementação
+    }
+}
+public class Carro implements Veiculo{
+
+    @Override // anotação que indica sobrescrita do método
+    public void ligar(){
+        System.out.println("Carro ligado!"); // método da interface implementado na classe
+    }
+
+    @Override // anotação que indica sobrescrita do método
+    public void desligar(){
+        System.out.println("Carro desligado!"); // método da interface implementado na classe
+    }
+}
+```
+- **Polimorfismo: sobrescrita e sobrecarga:** 
+sobrescrita é quando implementamos um método e alteramos como o método irá fazer o que ele se propôs a fazer. Por exemplo, Cachorro e Gato se comunicam, contudo de formas diferentes, logo o método *comunicar()* seria para o Cachorro latir e para o Gato miar, ou seja, um único método usado de formas diferentes, esse é outro pilar da POO que é o **Polimorfismo**. Além da sobrescrita, é usado outra forma de reúso de métodos chamada de: sobrecarga. A sobrecarga se caracteriza pela mudança na assinatura do método. Por exemplo, o método **somar(int valor1, int valor2){}** essa sintaxe do método somar() é a assinatura dele, se eu fizer **somar(int valor1, int valor2, int valor3){}** eu estou alterando essa assinatura, logo estou fazendo uma sobrecarga, mas essa sobrecarga só acontece se eu reutilizar o método na mesma classe e com o mesmo nome alterando a sua assinatura ou em classes diferentes mas mantendo o mesmo nome do método e alterando a sua assinatura. Um caracteriza da sobrecarga é que ela não depende de herança, a sobrescrita só ocorre se houver herança entre as classes ou implementação de interface.
+
+```
+// exemplo de sobrecarga
+
+public class Calculadora {
+    public int somar(int a, int b) {
+        return a + b;
+    }
+
+    public double somar(double a, double b) {
+        return a + b;
+    }
+
+    public int somar(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+```
+```
+// exemplo de sobrescrita
+
+public class Animal {
+    public void fazerSom() {
+        System.out.println("Som genérico de animal");
+    }
+}
+
+public class Cachorro extends Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("Au au!");
+    }
+}
+```
 ## Para saber mais
 **Artigo sobre Orientação a Objetos:** [Artigo da Alura](https://www.alura.com.br/artigos/poo-programacao-orientada-a-objetos?srsltid=AfmBOoqZjVNt8nPtFAt0LFlfnhWQHJYHp9cwkibk2cTSP_QMhWmORV5I)
 
